@@ -15,6 +15,7 @@ export function URLShortenerForm({ onShorten }: URLShortenerFormProps) {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const baseUrlLabel = typeof window !== "undefined" ? `${window.location.origin}/` : "your-domain/";
 
   const validateUrl = (input: string): boolean => {
     try {
@@ -145,10 +146,10 @@ export function URLShortenerForm({ onShorten }: URLShortenerFormProps) {
                   <label className="text-sm text-gray-400 mb-2 block">
                     Custom Alias (Optional)
                   </label>
+                  <p className="text-xs text-gray-500 mb-2">
+                    Base URL: <span className="font-medium">{baseUrlLabel}</span>
+                  </p>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm">
-                      short.ly/
-                    </span>
                     <Input
                       type="text"
                       value={customAlias}
@@ -157,7 +158,7 @@ export function URLShortenerForm({ onShorten }: URLShortenerFormProps) {
                         setError('');
                       }}
                       placeholder="my-custom-link"
-                      className="pl-20 pr-4 py-3 text-base rounded-lg bg-gray-900/50 border-white/20 text-white placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500/50"
+                      className="pr-4 py-3 text-base rounded-lg bg-gray-900/50 border-white/20 text-white placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500/50"
                     />
                   </div>
                   <p className="text-xs text-gray-500 mt-2">

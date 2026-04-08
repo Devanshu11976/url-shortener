@@ -1,58 +1,92 @@
-# URL Shortener (Open Source)
+<div align="center">
 
-An open source URL shortener built with Node.js, Express, SQLite, React, and Vite.
+# 🔗 URL Shortener
 
-## Features
+### A fast, open-source URL shortener — self-hosted and developer-friendly.
 
-- Create short URLs from long URLs
-- Optional custom aliases
-- Optional expiration date
-- Redirect using short code
-- Basic click analytics
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 
-## Quick Start
+[Features](#-features) · [Quick Start](#-quick-start) · [API Reference](#-api-reference) · [Roadmap](#-roadmap) · [Contributing](#-contributing)
 
-1. Install dependencies:
+</div>
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|--------|-------------|
+| 🔗 **Shorten URLs** | Convert any long URL into a short, shareable link |
+| ✏️ **Custom Aliases** | Choose your own slug (e.g. `/my-link`) |
+| ⏳ **Expiration Dates** | Set links to auto-expire at a specific date and time |
+| 📊 **Click Analytics** | Track how many times a link has been clicked and when |
+| ↩️ **Instant Redirects** | Fast `302` redirects for every short code |
+| 🖥️ **React Frontend** | Clean UI powered by React + Vite |
+| 🛠️ **REST API** | Fully documented API for integration with any app |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v18+
+- npm
+
+### Installation
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/shortly.git
+cd shortly
+
+# 2. Install dependencies
 npm install
-```
 
-2. Copy env file:
+# 3. Set up environment variables
+copy .env.example .env   # Windows
+# cp .env.example .env   # Mac/Linux
 
-```bash
-copy .env.example .env
-```
-
-3. Run development servers (API + frontend):
-
-```bash
+# 4. Start development servers
 npm run dev
 ```
 
-Frontend runs on `http://localhost:5173` and API on `http://localhost:3000`.
+| Service | URL |
+|--------|-----|
+| 🖥️ Frontend (React + Vite) | http://localhost:5173 |
+| ⚙️ Backend API (Express) | http://localhost:3000 |
 
-## Frontend
+> **Production build:**  Run `npm run build:web` to build the frontend. The backend will then serve it at `http://localhost:3000/`.
 
-In development, open `http://localhost:5173/` to use the React UI.
-After `npm run build:web`, the backend serves the built frontend at `http://localhost:3000/`.
+---
 
-## API
+## 📡 API Reference
 
 ### Health Check
 
-- `GET /health`
+```http
+GET /health
+```
 
-Response:
-
+**Response:**
 ```json
 { "ok": true }
 ```
 
-### Create Short URL
+---
 
-- `POST /shorten`
-- Body:
+### Create a Short URL
+
+```http
+POST /shorten
+```
+
+**Request Body:**
 
 ```json
 {
@@ -62,9 +96,9 @@ Response:
 }
 ```
 
-`customAlias` and `expiresAt` are optional.
+> `customAlias` and `expiresAt` are optional.
 
-Response:
+**Response:**
 
 ```json
 {
@@ -75,16 +109,25 @@ Response:
 }
 ```
 
+---
+
 ### Redirect
 
-- `GET /:code`
-- Returns a `302` redirect if found.
+```http
+GET /:code
+```
 
-### Stats
+Returns a `302` redirect to the original URL if the code is valid and not expired.
 
-- `GET /stats/:code`
+---
 
-Response:
+### Get Link Stats
+
+```http
+GET /stats/:code
+```
+
+**Response:**
 
 ```json
 {
@@ -97,30 +140,74 @@ Response:
 }
 ```
 
-## Roadmap (Recommended)
+---
 
-- Add rate limiting to `POST /shorten`
-- Add unit/integration tests
-- Add user accounts and private links
-- Add richer analytics (referrers, countries, devices)
+## 🗺️ Roadmap
 
-## Contributing
+Things we'd love to build next:
 
-This project is open source and contributions are welcome.
+- [ ] 🚦 Rate limiting on `POST /shorten`
+- [ ] 🧪 Unit & integration tests
+- [ ] 👤 User accounts & private links
+- [ ] 🌍 Richer analytics (referrers, countries, devices)
+- [ ] 🔒 Password-protected links
+- [ ] 📈 Dashboard with charts and insights
+- [ ] 🐳 Docker support
 
-If you want to help improve the project:
+---
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Open a pull request with a clear description
+## 🤝 Contributing
 
-Good first contribution ideas:
+Contributions are very welcome! Here's how to get started:
 
-- Bug fixes
-- UI/UX improvements
-- Better analytics and dashboards
-- Performance improvements
-- Docs and examples
+1. **Fork** this repository
+2. **Create** a feature branch: `git checkout -b feature/my-feature`
+3. **Commit** your changes: `git commit -m 'Add my feature'`
+4. **Push** to the branch: `git push origin feature/my-feature`
+5. **Open** a Pull Request with a clear description of what you changed and why
 
-Thanks for helping keep the project updated and useful for everyone.
+### 💡 Good First Issues
+
+Looking for somewhere to start? Try one of these:
+
+- 🐛 Bug fixes
+- 🎨 UI/UX improvements
+- 📊 Better analytics & dashboards
+- ⚡ Performance improvements
+- 📖 Docs and usage examples
+
+---
+
+## 📁 Project Structure
+
+```
+url-shortener/
+├── src/                          # React frontend (Vite + TypeScript)
+│   └── app/components/
+│       └── URLShortenerForm.tsx  # Main shortener form component
+├── data/                         # SQLite database storage
+├── dist/                         # Production build output
+├── .env.example                  # Environment variable template
+├── index.html
+├── package.json
+├── postcss.config.mjs
+└── vite.config.mts
+```
+
+---
+
+## 📄 License
+
+Copyright © 2026 Devanshu Sharma.
+
+This project is licensed under the **MIT License** — you are free to use, modify, and distribute this software, provided the original copyright notice is included.
+
+See the [LICENSE](./LICENSE) file for full details.
+
+---
+
+<div align="center">
+
+Made with ❤️ by **Devanshu Sharma** · [Report a Bug](https://github.com/devanshu-sharma/url-shortener/issues/new?template=bug_report.md) · [Request a Feature](https://github.com/devanshu-sharma/url-shortener/issues/new?template=feature_request.md) · [⭐ Star this repo](https://github.com/devanshu-sharma/url-shortener)
+
+</div>
