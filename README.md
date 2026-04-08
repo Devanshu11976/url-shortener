@@ -1,6 +1,6 @@
-# URL Shortener Starter
+# URL Shortener (Open Source)
 
-Simple URL shortener API using Node.js, Express, and SQLite.
+An open source URL shortener built with Node.js, Express, SQLite, React, and Vite.
 
 ## Features
 
@@ -97,9 +97,30 @@ Response:
 }
 ```
 
-## Next Up (Recommended)
+## Roadmap (Recommended)
 
 - Add rate limiting to `POST /shorten`
 - Add unit/integration tests
 - Add user accounts and private links
-- Add a small frontend page for shortening URLs
+- Add richer analytics (referrers, countries, devices)
+
+## Contributing
+
+This project is open source and contributions are welcome.
+
+If you want to help improve the project:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Open a pull request with a clear description
+
+Good first contribution ideas:
+
+- Bug fixes
+- UI/UX improvements
+- Better analytics and dashboards
+- Performance improvements
+- Docs and examples
+
+Thanks for helping keep the project updated and useful for everyone.
