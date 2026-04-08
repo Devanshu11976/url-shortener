@@ -42,8 +42,8 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/shortly.git
-cd shortly
+git clone https://github.com/Devanshu11976/url-shortener.git
+cd url-shortener
 
 # 2. Install dependencies
 npm install
@@ -144,7 +144,7 @@ GET /stats/:code
 
 ## 🗺️ Roadmap
 
-Things we'd love to build next:
+Things I'd love to build next:
 
 - [ ] 🚦 Rate limiting on `POST /shorten`
 - [ ] 🧪 Unit & integration tests
@@ -208,6 +208,6 @@ See the [LICENSE](./LICENSE) file for full details.
 
 <div align="center">
 
-Made with ❤️ by **Devanshu Sharma** · [Report a Bug](https://github.com/devanshu-sharma/url-shortener/issues/new?template=bug_report.md) · [Request a Feature](https://github.com/devanshu-sharma/url-shortener/issues/new?template=feature_request.md) · [⭐ Star this repo](https://github.com/devanshu-sharma/url-shortener)
+Made with ❤️ by **Devanshu Sharma** · [Report a Bug](https://github.com/Devanshu11976/url-shortener/issues/new?template=bug_report.md) · [Request a Feature](https://github.com/Devanshu11976/url-shortener/issues/new?template=feature_request.md) · [⭐ Star this repo](https://github.com/Devanshu11976/url-shortener)
 
 </div>
