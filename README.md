@@ -202,7 +202,7 @@ Copyright © 2026 Devanshu Sharma.
 
 This project is licensed under the **MIT License** — you are free to use, modify, and distribute this software, provided the original copyright notice is included.
 
-See the [LICENSE](./LICENSE) file for full details.
+
 
 ---
 

@@ -1,58 +1,16 @@
-const fs = require("fs");
-const path = require("path");
-const sqlite3 = require("sqlite3").verbose();
+const mongoose = require("mongoose");
 
-const dataDir = path.join(__dirname, "..", "data");
-const dbPath = path.join(dataDir, "urls.db");
-
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
-}
-
-const db = new sqlite3.Database(dbPath);
-
-function initializeDatabase() {
-  return new Promise((resolve, reject) => {
-    db.serialize(() => {
-      db.run(
-        `
-        CREATE TABLE IF NOT EXISTS urls (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          code TEXT NOT NULL UNIQUE,
-          long_url TEXT NOT NULL,
-          created_at TEXT NOT NULL DEFAULT (datetime('now')),
-          expires_at TEXT
-        )
-        `,
-        (err) => {
-          if (err) {
-            reject(err);
-            return;
-          }
-        }
-      );
-
-      db.run(
-        `
-        CREATE TABLE IF NOT EXISTS clicks (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          url_id INTEGER NOT NULL,
-          clicked_at TEXT NOT NULL DEFAULT (datetime('now')),
-          referrer TEXT,
-          user_agent TEXT,
-          FOREIGN KEY(url_id) REFERENCES urls(id)
-        )
-        `,
-        (err) => {
-          if (err) {
-            reject(err);
-            return;
-          }
-          resolve();
-        }
-      );
+async function connectDB() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      dbName: "url-shortener"
     });
-  });
+
+    console.log("✅ MongoDB Connected");
+  } catch (err) {
+    console.error("❌ MongoDB Connection Failed:", err.message);
+    process.exit(1);
+  }
 }
 
-module.exports = { db, initializeDatabase };
+module.exports = connectDB;
