@@ -1,0 +1,5 @@
+*.css linguist-vendored
+*.html linguist-vendored
+
+*.ts linguist-detectable=true
+*.ts linguist-language=TypeScript
